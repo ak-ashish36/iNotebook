@@ -9,12 +9,11 @@ function Login(props) {
     }
     // useHistory hook is used for redirecting to pages
     let history = useHistory();
-    const host = "https://inotebook-ashish.herokuapp.com";
-    // const host = "http://localhost:5000";
+    
     //Action to be done after clicking submit button
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let url = `${host}/login`;
+        let url = `${props.host}/login`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {

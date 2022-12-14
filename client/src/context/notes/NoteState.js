@@ -2,8 +2,8 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "https://inotebook-ashish.herokuapp.com";
   // const host = "http://localhost:5000";
+  const host = "https://inotebook-ak.cyclic.app";
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 
@@ -41,14 +41,13 @@ const NoteState = (props) => {
   // Delete a Note
   const deleteNote = async (id) => {
     // API Call
-    const response = await fetch(`${host}/deletenote/${id}`, {
+    await fetch(`${host}/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         "auth-token": localStorage.getItem('token')
       }
     });
-    const json = response.json();
     const newNotes = notes.filter((note) => { return note._id !== id })
     setNotes(newNotes)
   }
@@ -56,7 +55,7 @@ const NoteState = (props) => {
   // Edit a Note
   const editNote = async (id, title, description, tag) => {
     // API Call 
-    const response = await fetch(`${host}/updatenote/${id}`, {
+    await fetch(`${host}/updatenote/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +63,6 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
-    const json = await response.json();
   
     let newNotes =JSON.parse(JSON.stringify(notes))
     // Logic to edit in client

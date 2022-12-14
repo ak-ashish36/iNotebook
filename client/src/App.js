@@ -14,6 +14,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 
 function App() {
+  // const host = "http://localhost:5000";
+  const host = "https://inotebook-ak.cyclic.app";
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type)=>{
@@ -38,10 +40,10 @@ function App() {
                 <Home showAlert={showAlert}/>
               </Route>
               <Route exact path="/login">
-                <Login showAlert={showAlert}/>
+                <Login showAlert={showAlert} host={host}/>
               </Route>
               <Route exact path="/signup">
-                <Signup showAlert={showAlert}/>
+                <Signup showAlert={showAlert} host={host}/>
               </Route>
               <Route exact path="/about">
                 <About />
